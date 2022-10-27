@@ -14,5 +14,10 @@ func main() {
 		time.Sleep(time.Second) //阻塞一秒
 		count--
 	}
+
+	for i := 0; i < 5; i++ {
+		fmt.Printf("i=%v\n", i)
+	}
+
 	fmt.Println("循环结束")
 }
