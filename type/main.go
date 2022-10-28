@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // golang基本类型
@@ -25,4 +26,27 @@ func main() {
 	fmt.Printf("%T\n", a) // 显示 uint
 	fmt.Printf("%T\n", b) // 显示 float64
 	fmt.Printf("%T\n", c) // 显示 int
+
+	// 类型转换
+	// 例子 string(b) uint8(c)
+	// string只会转换为对应的codepoint
+	// 如果要将一个数字转换为string类型
+	// 则要使用strconv.Itoa 函数来转换
+	str := "abcde" + strconv.Itoa(int(b)) + "secx"
+	fmt.Println(str)
+
+	// 当然日常使用最多的字符串强转类型是使用
+	// fmt.Sprintf函数,返回值为一个string类型
+	countdown := 9
+	str1 := fmt.Sprintf("今年你%v岁了", countdown)
+	fmt.Println(str1)
+
+	// nil 关键字
+	// 如果err返回的内容为nil则表示没有发生错误
+	countdown2, err := strconv.Atoi("10")
+	if err != nil {
+		// 发生错误时
+		fmt.Println(countdown2)
+	}
+	fmt.Println(countdown2)
 }
