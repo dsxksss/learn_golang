@@ -49,4 +49,10 @@ func main() {
 		fmt.Println(countdown2)
 	}
 	fmt.Println(countdown2)
+
+	// 使用type关键字来创建新类型
+	type newfloat float64
+	var x newfloat = 21.2
+	fmt.Println(x)
+
 }
