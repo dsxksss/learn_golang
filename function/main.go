@@ -16,6 +16,7 @@ func max(a, b int) int {
 // func maxE(a, b int) (result int, err error) {
 func maxE(a, b int) (int, error) {
 	if a > b {
+		// nil 表示没有错误
 		return a, nil
 	} else if a < b {
 		return b, nil
@@ -28,8 +29,4 @@ func maxE(a, b int) (int, error) {
 // interface{} 表示空接口 类似于ts中的any
 func printx(a ...interface{}) (interface{}, error) {
 	return a, errors.New("我是一个可变参数函数")
-}
-
-func main() {
-
 }
