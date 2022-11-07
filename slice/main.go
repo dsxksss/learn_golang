@@ -112,4 +112,25 @@ func main3() {
 	dump("terrestrial", terrestrial)
 	dump("worldes", worldes)
 
+	main4()
+}
+
+func main4() {
+	// 利用make函数对slice进行预分配
+	// 我们知道当slice的容量不足以执行append函数时
+	// golang必须创建新的数组并复制数组中的内容
+	// 但是可以通过make避免额外的内存分配和数组复制
+
+	// 这里利用了make函数创建了一个长度为0容量为10的一个slice切片
+	dwarfs := make([]string, 0, 10)
+
+	// make 函数为两个参数时 第二个参数表示长度和容量
+	// 当为三给参数时 第二个参数表示长度 第三个表示容量
+	dump("before make(dwarfs)", dwarfs)
+
+	dwarfs = append(dwarfs, "Ceres", "Pluto", "Haumea", "Makemake", "Eris")
+	dwarfs = append(dwarfs, "Ceres", "Pluto", "Haumea", "Makemake", "Eris", "xxx")
+
+	dump("after make(dwarfs)", dwarfs)
+
 }

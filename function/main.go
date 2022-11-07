@@ -1,6 +1,9 @@
 package main
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // 如果两个参数类型一样可以指表明后面参数的类型
 // 函数名大写表示public 小写表示private
@@ -29,4 +32,23 @@ func maxE(a, b int) (int, error) {
 // interface{} 表示空接口 类似于ts中的any
 func printx(a ...interface{}) (interface{}, error) {
 	return a, errors.New("我是一个可变参数函数")
+}
+
+// 可变长度参数函数
+func terraform(perfix string, worlds ...string) []string {
+	newWorlds := make([]string, len(worlds))
+	for i := range worlds {
+		newWorlds[i] = perfix + "" + worlds[i]
+	}
+	return newWorlds
+}
+
+func main() {
+	// 可变长度参数函数
+	// 使用例子
+	twoWorlds := terraform("New", "Venus", "Mars")
+	fmt.Println(twoWorlds)
+	planets := []string{"Venus", "Mars", "Jupiter"}
+	newPlanets := terraform("New", planets...)
+	fmt.Println(newPlanets)
 }
