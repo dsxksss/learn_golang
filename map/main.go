@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strings"
 )
 
 func main() {
@@ -132,4 +133,35 @@ func main() {
 	// 会改变原切片内容
 	sort.Float64s(unique)
 	fmt.Println(unique)
+
+	fmt.Println("***************************")
+	fmt.Println("课后作业:")
+	test := "As far as eye could reach he saw nothing but the stems of the great plants about him receding inthe violet shade, and far overhead the multiple transparency of huge leaves filtering the sunshine to the solemn splendour of twilight in which he walked. Whenever he felt able he ranagain; the ground continued soft and springy, covered with the same resilient weed which wasthe first thing his hands had touched in Malacandra. Once or twice a small red creature scuttledacross his path, but otherwise there seemed to be no life stirring in the wood; nothing to fear-except the fact of wandering unprovisioned and alone in a forest of unknown vegetation thousands or millions of miles beyond the reach or knowledge of man."
+	logWordFrequency(test)
+}
+
+// 课后作业
+// 可以统计字符串中重复出现的单词
+// 并返回一个记录了重复出现的单词词频map
+// 该函数需要将文本转换为小写字母并移除包含的标点符号
+// 可以利用strings包中的Fields、ToLower、Trim函数实现
+// 并且要打印出现不止一次的单词与词频
+
+func logWordFrequency(str string) map[string]uint8 {
+	wf := make(map[string]uint8)
+	lowerStrs := strings.Fields(strings.ToLower(str))
+	for _, word := range lowerStrs {
+		afterStr := strings.Trim(word, ",;./!@#$%^&*_=-~`")
+		wf[afterStr]++
+	}
+	for k, v := range wf {
+		if v <= 1 {
+			// 如果有只出现了一次的单词
+			// 那么就删除其词频map
+			delete(wf, k)
+		} else {
+			fmt.Printf("word:[%v] count:[%v]\n", k, v)
+		}
+	}
+	return wf
 }
