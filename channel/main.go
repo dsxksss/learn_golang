@@ -22,18 +22,18 @@ import (
 // 通道可以给我们提供安全快速的执行goroutine的操作
 // 通道的创建: 利用内置的make函数
 // 语法: 通道名 := make(chan 类型)
-// c := make(i int)
+// 例子: c := make(chan int)
 
 // 通道的发送和接受
 // 使用左箭头操作符 <- 向通道发送值 或 从通道接收值
-// - 向通道发送值 c <- 99
-// - 向通道接受值 i <- c
+// - 向通道发送值   通道     <-  发送值   例: c <- 99
+// - 向通道接受值   接收值  <-     通道   例: i <- c
 
-// 发送操作会等待直到另一个goroutine尝试对该通道进行接收操作为止
+// 发送操作会等待直到下一个goroutine尝试对该通道进行接收操作为止
 // - 执行发送操作的goroutine在等待期间将无法执行其他的操作
 // - 未在等待通道操作的goroutine仍然可以继续自由的运行
 
-// 执行接受操作的goroutine将等待直到另一个goroutine尝试向该通道
+// 执行接受操作的goroutine将等待直到下一个goroutine尝试向该通道
 // 进行发送操作为止
 
 // 例子
@@ -56,7 +56,7 @@ func main() {
 }
 
 // 该goroutine如果接受一个通道作为参数
-// 那么声明语法为 通道名 chan 通道类型
+// 那么声明语法为 参数通道名 chan 通道类型
 func sleepyGopher(id int, c chan int) {
 	time.Sleep(time.Second * 3)
 	fmt.Println("...", id, "snore ...")
